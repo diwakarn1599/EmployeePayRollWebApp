@@ -44,3 +44,64 @@ body
 {
     color: darkgrey;
 }
+/*******************************************UC-2****************************************************************/
+.add_button
+{
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0;
+    color: white;
+    background-color: orange;
+    border:none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    padding: 5px 3px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.add_button:hover{
+    transform: scale(1.1);
+}
+.icons
+{
+    width: 16px;
+}
+.Main_Container
+{
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh-80px);
+    background-color: #f7f7f7;
+    padding: 30px 0 10px;
+    box-sizing: border-box;
+}
+.header_container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 25px;
+}
+.header_text
+{
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: darkslategray;
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+.emp_count
+{
+    color: white;
+    background-color: orange;
+    margin-left: 10px;
+    border-radius: 4px;
+    padding:1px;
+    font-size: 16px;
+    text-align: center;
+}

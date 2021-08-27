@@ -88,9 +88,25 @@ let deleteEmployee = (employee) =>
         return;
     const index = employeePayrollList.map(x => x.id).indexOf(empData.id);
     employeePayrollList.splice(index,1);
-    localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
-    document.getElementById('emp_count').innerHTML = employeePayrollList.length;
-    createTableContents();
+    if(siteProperties.use_local_storage.match("true"))
+    {
+        localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
+        document.getElementById('emp_count').innerHTML = employeePayrollList.length;
+        createTableContents();
+    }
+    else{
+        const deleteURL=siteProperties.server_url+empData.id.toString();
+        makeServiceCall("DELETE",deleteURL,false)
+        .then(responseText=>
+            {
+                createInnerHtml();
+            })
+            .catch(error=>
+                {
+                    console.log("DELETE Error Status:"+JSON.stringify(error));
+                });
+    }
+    
 }
 /********************************************Update Employee*************************************/
 let updateEmployee = (employee) =>

@@ -65,24 +65,51 @@ const save=(event)=>
   try
   {
     setEmpObj();
-    createAndUpdateStorage();
-    resetForm();
-    window.location.replace(siteProperties.home_page);
+    if(siteProperties.use_local_storage.match("true"))
+    {
+      createAndUpdateStorage();
+      resetForm();
+      window.location.replace(siteProperties.home_page);
+    }
+    else{
+      createOrUpdateEmployeePayrollFromServer();
+      window.location.replace(siteProperties.home_page);
+    }
   }
   catch(e)
   {
     return;
   }
 }
+const createOrUpdateEmployeePayrollFromServer=()=>
+{
+  let postURL=siteProperties.server_url;
+  let methodCall="POST";
+  if(isUpdate)
+  {
+    methodCall="PUT";
+    postURL=postURL+empObj.id.toString();
+  }
+  makeServiceCall(methodCall,postURL,true,empObj)
+ .then(responseText=>
+  {
+      resetForm();
+    
+  })
+  .catch(error=>
+    {
+      throw error;
+    });
+}
 const setEmpObj = () =>
 {
-  if(!isUpdate)
+  if(!isUpdate && siteProperties.use_local_storage.match("true"))
       empObj.id = createNewEmployeeId();
-    empObj._empName = getById('empName').value;
-    empObj._empProfilePic = getSelectedValues('[name=profile]').pop();
-    empObj._empGender = getSelectedValues('[name=gender]').pop();
-    empObj._empDept=getSelectedValues('[name=dept]');
-    empObj._empSalary=getById('salary').value;
+    empObj._name = getById('empName').value;
+    empObj._profilePic = getSelectedValues('[name=profile]').pop();
+    empObj._gender = getSelectedValues('[name=gender]').pop();
+    empObj._department=getSelectedValues('[name=dept]');
+    empObj._salary=getById('salary').value;
     empObj._notes=getById('notes').value;
     let date=`${getById('day').value} ${getById('month').value} ${getById('year').value}`;
     empObj._startDate = date;
@@ -185,17 +212,17 @@ const resetForm=() =>
 /**************************************Set form for update******************************************************/
 const setForm = () =>
 {
-  setValue('#empName',empObj._empName);
-  setValue('#salary',empObj._empSalary);
+  setValue('#empName',empObj._name);
+  setValue('#salary',empObj._salary);
   setValue('#notes',empObj._notes);
-  getById('salaryOutput').value = empObj._empSalary;
+  getById('salaryOutput').value = empObj._salary;
   let date = stringifyDate(empObj._startDate).split(" ");
   getById('day').value = date[0];
   getById('month').value = date[1];
   getById('year').value =date[2];
-  setSelectedValues('[name=profile]',empObj._empProfilePic);
-  setSelectedValues('[name=gender]',empObj._empGender);
-  setSelectedValues('[name=dept]',empObj._empDept);
+  setSelectedValues('[name=profile]',empObj._profilePic);
+  setSelectedValues('[name=gender]',empObj._gender);
+  setSelectedValues('[name=dept]',empObj._department);
 }
 /****************************Methods for reset*************************************/
 const setValue=(id,value)=>{

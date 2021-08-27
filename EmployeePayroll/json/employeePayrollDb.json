@@ -11,7 +11,7 @@
         "_salary": "500000",
         "_startDate": "15 August 2021",
         "_note": "All In One",
-        "_profilePic": "../assests/profile-images/Ellipse -2.png"
+        "_profilePic": "../assets/profile-images/Ellipse -2.png"
       },
       {
         "id": 2,
@@ -23,7 +23,7 @@
         "_salary": "500000",
         "_startDate": "20 August 2021",
         "_note": "qweryt",
-        "_profilePic": "../assests/profile-images/Ellipse -3.png"
+        "_profilePic": "../assets/profile-images/Ellipse -3.png"
       },
       {
         "_name": "Nayantara",
@@ -34,13 +34,13 @@
         "_salary": "400000",
         "_startDate": "12 August 2021",
         "_note": "Actress",
-        "_profilePic": "../assests/profile-images/Ellipse -1.png",
+        "_profilePic": "../assets/profile-images/Ellipse -1.png",
         "id": 3
       },
       {
         "id": "4",
         "_name": "Trisha",
-        "_profilePic": "../assests/profile-images/Ellipse -4.png",
+        "_profilePic": "../assets/profile-images/Ellipse -4.png",
         "_gender": "Female",
         "_department": [
           "Finance",
@@ -53,7 +53,7 @@
       {
         "id": "5",
         "_name": "Dhoni",
-        "_profilePic": "../assests/profile-images/Ellipse -4.png",
+        "_profilePic": "../assets/profile-images/Ellipse -4.png",
         "_gender": "male",
         "_department": [
           "Engineer"
